@@ -23,7 +23,7 @@ export default function UpcomingMovie({ upcoming, title }) {
           /// TouchableWithoutFeedback biz View yoki shunga o'xshash bosilmidan componentlardi o'rashimiz mumkin va buni o'zini bosilganda hechqanday effecti yo'q
           <TouchableWithoutFeedback
             /// biz navigation ga parametr ham bershimiz mumkin  yoki props desak ham bo'ladi,  Movie componentda shu bergan parametirimzdi propsdan olib ishlata olamiz
-            onPress={() => navigation.navigate("Movie", item)}
+            onPress={() => navigation.navigate("Movie", item.id)}
             key={item.id}
           >
             <View className="space-y-1 mr-4">

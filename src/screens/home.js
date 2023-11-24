@@ -57,7 +57,7 @@ export function Home({ navigation }) {
   return (
     <View className="flex-1 bg-slate-900 ">
       <SafeAreaView>
-        <StatusBar style="light" />
+        <StatusBar style="inverted" />
         <View className="flex-row justify-between items-center mx-4 mt-2 border-b-2 border-white pb-2">
           <Image source={require("../../assets/favicon.png")} />
           <MagnifyingGlassIcon size={30} color={"white"} />
