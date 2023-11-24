@@ -90,12 +90,37 @@ const Movie = (props) => {
                 "rgba(23, 23, 23, 1)",
               ]}
               style={{ width, height: height * 0.4 }}
-              start={{x: 0.5, y: 0}}
-              end={{x: 0.5, y: 1}}
+              start={{ x: 0.5, y: 0 }}
+              end={{ x: 0.5, y: 1 }}
               className="absolute bottom-0"
             />
           </View>
         )}
+      </View>
+      <View className="space-y-4 -mt-4">
+        <Text className="text-white text-center text-3xl font-bold tracking-widest">
+          {movie?.title}
+        </Text>
+        {movie?.id ? (
+          <Text className="text-neutral-400 font-semibold text-base text-center">
+            {/* Biz bu yerda split qilib release_date massiv qilib va uni ichidan birinchi yani yil o'zini olibmiz, */}
+            {movie?.status} ・ {movie?.release_date?.split("-")[0]} ・{" "}
+            {movie?.runtime} min
+          </Text>
+        ) : null}
+        <View className="flex-row  justify-center mx-4 space-x-2 flex-wrap">
+          {movie?.genres?.map((genre, idx) => (
+            <Text
+              key={idx}
+              className={"text-neutral-400 font-semibold text-base text-center"}
+            >
+              {genre.name} {idx + 1 !== movie?.genres.length ? "・" : null}
+            </Text>
+          ))}
+        </View>
+        <Text className="text-neutral-400 mx-4 tracking-wider">
+          {movie?.overview}
+        </Text>
       </View>
     </ScrollView>
   );
