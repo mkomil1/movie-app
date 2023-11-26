@@ -15,6 +15,11 @@ const movieCredits = (id) =>
 // bu yerda esa o'sha kinoga o'xshash kinolar olsan bo'ladigan url fantastik bo'lsa fantastik chiqaradi misol uchun , id dan keyin similar o'xshash kinolar
 const similarMovie = (id) =>
   `${base_url}/movie/${id}/similar?api_key=${api_key}`;
+/// bu yerda shaxsdi ma'lumotlarini olibmiz
+const personDetail = (id) => `${base_url}/person/${id}?api_key=${api_key}`;
+/// bu yerda esa shu shaxsdi o'ynagan kinolarini olmoqdamiz ushbu urldan
+const personMovies = (id) =>
+  `${base_url}/person/${id}/movie_credits?api_key=${api_key}`;
 
 export const fetchTrendingMovie = () => {
   return apiRequest(trendingMovie);
@@ -40,8 +45,14 @@ export const fetchMovieCredits = (id) => {
   return apiRequest(movieCredits(id));
 };
 export const fetchSimilarMovie = (id) => {
-  return apiRequest(similarMovie(id))
-}
+  return apiRequest(similarMovie(id));
+};
+export const fetchPersonDetail = (id) => {
+  return apiRequest(personDetail(id));
+};
+export const fetchPersonMovies = (id) => {
+  return apiRequest(personMovies(id));
+};
 export const Image500 = (posterPath) => {
   return posterPath ? `https://image.tmdb.org/t/p/w500` + posterPath : null;
 };

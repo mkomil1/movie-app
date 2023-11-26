@@ -8,9 +8,11 @@ import {
   View,
 } from "react-native";
 import { Image185, Image342 } from "../api";
+import { useNavigation } from "@react-navigation/native";
 
 const Cast = ({ cast }) => {
   const { width, height } = Dimensions.get("window");
+  const navigation = useNavigation()
   return (
     <View className="my-6">
       <Text className={"text-white text-lg mx-4 mb-5"}>Actors</Text>
@@ -21,7 +23,7 @@ const Cast = ({ cast }) => {
       >
         {cast &&
           cast.map((person, idx) => (
-            <TouchableOpacity key={idx} className="mr-4">
+            <TouchableOpacity key={idx} onPress={() => navigation.navigate("Person", person.id)} className="mr-4">
               <View className="overflow-hidden rounded-full border w-20 h-20 border-neutral-500 items-center">
                 <Image
                   source={{ uri: Image185(person.profile_path) }}

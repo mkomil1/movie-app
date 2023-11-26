@@ -3,6 +3,7 @@ import {NavigationContainer} from "@react-navigation/native"
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Home } from '../screens/home';
 import Movie from '../screens/movie';
+import { Person } from '../screens';
 
 const Stack = createNativeStackNavigator();
 const AppNavigation = () => {
@@ -19,7 +20,7 @@ const AppNavigation = () => {
         {/* headerShown qo'yganimiz sababi tepadagi headerda biz name bergan, Home headerda chiqadi shuni o'chiradi */}
         <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
         <Stack.Screen name="Movie" component={Movie} options={{headerShown: false}}/>
-
+        <Stack.Screen name="Person" component={Person} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   )
