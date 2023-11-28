@@ -62,7 +62,7 @@ const Movie = (props) => {
     <View className="flex-1">
       <SafeAreaView className="absolute z-20 w-full flex-row justify-between items-center px-4">
         {/* go back bitta oldingi screenga qaytaradi */}
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <ChevronLeftIcon color={"white"} strokeWidth={2.5} size={30} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setisFavourite((prev) => !prev)}>

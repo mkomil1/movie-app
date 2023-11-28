@@ -1,22 +1,32 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useCallback, useState } from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { XMarkIcon } from "react-native-heroicons/outline";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { fetchSearchMovie } from "../api";
+import { Image185, Image500, fetchSearchMovie } from "../api";
 import { debounce } from "lodash";
+import Loader from "../components/loader";
 
 export default function Search() {
   const navigation = useNavigation();
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { width, height } = Dimensions.get("window");
   const handleSearch = (searchText) => {
     if (searchText && searchText.length > 3) {
       setIsLoading(true);
       fetchSearchMovie({
         query: searchText,
         include_adult: false,
-        language: "uz-UZ",
         page: "1",
       }).then((data) => {
         setIsLoading(false);
@@ -57,6 +67,50 @@ export default function Search() {
           <XMarkIcon color={"white"} size={25} />
         </TouchableOpacity>
       </View>
+      {isLoading ? (
+        <Loader />
+      ) : results.length > 0 ? (
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 15 }}
+          className="space-y-3"
+        >
+          <Text className="text-white font-semibold ml-1">
+            Results ({results.length})
+          </Text>
+          <View className="flex-row justify-between flex-wrap">
+            {results.map((item) => (
+              <TouchableWithoutFeedback
+                onPress={() => navigation.navigate("Movie", item.id)}
+                key={item.id}
+              >
+                <View className="space-y-2 mb-4">
+                  <Image
+                    source={{ uri: Image185(item.poster_path) }}
+                    className="rounded-3xl"
+                    style={{ width: width * 0.44, height: height * 0.3 }}
+                  />
+                  <Text className="text-gray-300 ml-1">
+                    {item.title.length > 22
+                      ? item.title.slice(0, 22) + "..."
+                      : item.title}
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
+            ))}
+          </View>
+        </ScrollView>
+      ) : (
+        <View className="justify-center">
+          <Image
+            source={require("../../assets/favicon.png")}
+            className="w-96 h-96"
+          />
+          <Text className="text-white text-3xl text-center">
+            Movies not found
+          </Text>
+        </View>
+      )}
     </SafeAreaView>
   );
 }
