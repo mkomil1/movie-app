@@ -20,19 +20,21 @@ import TrendingMovie from "../components/trending-movie";
 import UpcomingMovie from "../components/upcoming-movie";
 import TopRatedMovie from "../components/top-rated-movie";
 import Loader from "../components/loader";
+import { useNavigation } from "@react-navigation/native";
 
-export function Home({ navigation }) {
+export function Home() {
   const [trending, setTrending] = useState([]);
   const [upcoming, setUpcoming] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [popular, setPopular] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const navigation = useNavigation()
+
   const getTrendingMovie = async () => {
     const data = await fetchTrendingMovie();
     setTrending(data.results);
     setIsLoading(false);
-
   };
   const getUpcomingMovie = async () => {
     const data = await fetchUpcomingMovie();
@@ -58,9 +60,11 @@ export function Home({ navigation }) {
     <View className="flex-1 bg-slate-900 ">
       <SafeAreaView>
         <StatusBar style="inverted" />
-        <View className="flex-row justify-between items-center mx-4 mt-2 border-b-2 border-white pb-2">
+        <View className="flex-row justify-between items-center mx-4 mt-2  pb-2">
           <Image source={require("../../assets/favicon.png")} />
-          <MagnifyingGlassIcon size={30} color={"white"} />
+          <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+            <MagnifyingGlassIcon size={30} color={"white"} />
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
       {/* Biz scroll joylar cardlar yoki boshqa narslardi scroll bo'lishi uchun scrollView ga olshimiz kerak */}

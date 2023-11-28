@@ -7,8 +7,7 @@ import MovieCard from "./movie-card";
 const {width} = Dimensions.get("window")
 export default function TrendingMovie({ trending }) {
   return (
-    <View className="mb-5">
-      <Text className={"text-white text-2xl mx-4 mb-5"}>Trending Movie</Text>
+    <View className="my-5">
       <Carousel
         // ref={(c) => {
         //   this._carousel = c;

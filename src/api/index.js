@@ -7,6 +7,8 @@ const trendingMovie = `${base_url}/trending/movie/day?api_key=${api_key}`;
 const upcomingMovie = `${base_url}/movie/upcoming?api_key=${api_key}`;
 const topRatedMovie = `${base_url}/movie/top_rated?api_key=${api_key}`;
 const popularMovie = `${base_url}/movie/popular?api_key=${api_key}`;
+const searchMovie = `${base_url}/search/movie?api_key=${api_key}`;
+
 //// bu yerda id kinoni rasmiga bosilganda o'sha kinoni id keladi va o'sha kinoni ma'lumotlarini olshimiz mumkin bo'lgan url
 const movieDetail = (id) => `${base_url}/movie/${id}?api_key=${api_key}`;
 /// bu yerda esa shu kinoni o'ynagan actyorlar haqida m'alumotlar olibmiz id dan keyin credits qo'yshimiz kerak
@@ -53,14 +55,19 @@ export const fetchPersonDetail = (id) => {
 export const fetchPersonMovies = (id) => {
   return apiRequest(personMovies(id));
 };
+//// Bu yerda biz kinolardi search qilsak bo'ladigan api function yozganmiz
+export const fetchSearchMovie = (params) => {
+  return apiRequest(searchMovie, params)
+}
 export const Image500 = (posterPath) => {
   return posterPath ? `https://image.tmdb.org/t/p/w500` + posterPath : null;
 };
 
 export const Image342 = (posterPath) => {
-  return posterPath ? `https://image.tmdb.org/t/p/342` + posterPath : null;
+  return posterPath ? `https://image.tmdb.org/t/p/w342` + posterPath : null;
 };
 
 export const Image185 = (posterPath) => {
   return posterPath ? `https://image.tmdb.org/t/p/w185` + posterPath : null;
 };
+
