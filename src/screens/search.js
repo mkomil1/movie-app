@@ -103,7 +103,7 @@ export default function Search() {
       ) : (
         <View className="justify-center">
           <Image
-            source={require("../../assets/favicon.png")}
+            source={require("../../assets/not-found.png")}
             className="w-96 h-96"
           />
           <Text className="text-white text-3xl text-center">

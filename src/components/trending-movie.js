@@ -21,7 +21,10 @@ export default function TrendingMovie({ trending }) {
         itemWidth={width * 0.7}
         slideStyle={{display: "flex", alignItems: "center"}}
         loop={true}
-        autoplay={{delay: 200}}
+        autoplay={true}
+        autoplayDelay={3000}
+        autoplayInterval={3000}
+        
       />
     </View>
   );

@@ -18,8 +18,7 @@ export default function Loader() {
 
 const styles = StyleSheet.create({
   lottie: {
-    width: 150,
-    height: 150,
-    color: "#fff"
+    width: 130,
+    height: 130,
   },
 });
